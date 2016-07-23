@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>Manejo de Recursos Humanos</title>
+            <%= stylesheet_link_tag    "application", :media => "all" %>
+            <%= javascript_include_tag "application" %>
+            <%= csrf_meta_tags %>
+
+    </head>
+    <body>
+        <ul class="nav nav-pills">       
+
+              <% if user_signed_in? %>
+                  <li role="presentation" class="active"><a href="../">Inicio</a></li>
+                <%if can? :manage, @Welcome%>
+                  <li role="presentation"><a href="#">Agregar Persona</a></li>
+                  <li role="presentation"><a href="#">Ver Trabajadores</a></li>
+                  <li role="presentation"><a href="#">Programar Tareas</a></li>
+                  <li role="presentation"><a href="#">Asignar Comisiones</a></li>
+                  <li role="presentation"><a href="#">Permisos</a></li>
+                <% end %>  
+                  <li role="presentation"><a href="#">Ver Tareas Programadas</a></li>
+                  <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+              <% end %>
+
+        </ul>
+
+
+        <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <%= value %>
+        </div>
+        <% end %>
+
+        <div class="main container">
+                        <%= yield %>
+        </div>
+
+    </body>
+</html>

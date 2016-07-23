@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+	<div class="breadcrumb" align="right">
+		<%= current_user.email %>
+		<%= current_user.role %>
+	</div>	
+	<div class="well" align="center">
+		<h1>Control de Empleados "EL EXITO"</h1>
+	</div>
+
+<% else %>
+    <%= link_to 'Login', new_user_session_path %>
+<% end %>
